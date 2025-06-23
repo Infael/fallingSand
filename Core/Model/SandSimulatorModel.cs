@@ -20,9 +20,8 @@ class SandSimulatorModel
 
   public Color GetColor()
   {
-    return ColorUtils.FromHSV(_hue += 1f, 1f, 1f);
+    return ColorUtils.FromHSV(_hue += 90f, 1f, 1f);
   }
-
 
   public void AddSand(int x, int y, Color color)
   {
@@ -37,10 +36,8 @@ class SandSimulatorModel
     Grid[x, y] = null;
   }
 
-  public void Update()
+  private void HandleFall(ref Sand?[,] newGrid)
   {
-    Sand?[,] newGrid = new Sand?[Width, Height];
-
     bool random = Random.Shared.Next(2) == 0;
     int startX = random ? Width - 1 : 0;
     int endX = random ? -1 : Width;
@@ -79,6 +76,13 @@ class SandSimulatorModel
         }
       }
     }
+  }
+
+  public void Update()
+  {
+    Sand?[,] newGrid = new Sand?[Width, Height];
+
+    HandleFall(ref newGrid);
 
     Grid = newGrid;
   }

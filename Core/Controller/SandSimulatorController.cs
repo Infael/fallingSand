@@ -9,7 +9,7 @@ class SandSimulatorController(SandSimulatorModel model)
 
   public void HandleInput()
   {
-    if (Raylib.IsMouseButtonDown(MouseButton.Left))
+    if (Raylib.IsMouseButtonPressed(MouseButton.Left))
     {
 
       var mousePosition = Raylib.GetMousePosition();
